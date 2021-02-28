@@ -1,0 +1,18 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sn.vhr.mapper.DepartmentMapper">
+
+    <resultMap id="BaseResultMap" type="com.sn.vhr.model.Department">
+            <result column="id" property="id" jdbcType="INTEGER" />
+            <result column="name" property="name" jdbcType="VARCHAR" />
+            <result column="parentId" property="parentid" jdbcType="INTEGER" />
+            <result column="depPath" property="deppath" jdbcType="VARCHAR" />
+            <result column="enabled" property="enabled" jdbcType="BIT" />
+            <result column="isParent" property="isparent" jdbcType="BIT" />
+    </resultMap>
+
+    <select id="getAllDepartments" resultMap="BaseResultMap">
+        select * from department;
+    </select>
+</mapper>

@@ -1,0 +1,22 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sn.vhr.mapper.HrMapper">
+
+    <resultMap id="BaseResultMap" type="com.sn.vhr.model.Hr">
+        <id property="id" column="id"/>
+        <collection property="roles" column="id" select="findRolesByUserId"/>
+    </resultMap>
+
+    <select id="findUserByUsername" resultMap="BaseResultMap">
+        select *
+        from hr
+        where username = #{username}
+    </select>
+
+    <select id="findRolesByUserId" resultType="com.sn.vhr.model.Role">
+        select *
+        from role
+        where id in (select rid from hr_role where hrid = #{hrId})
+    </select>
+</mapper>

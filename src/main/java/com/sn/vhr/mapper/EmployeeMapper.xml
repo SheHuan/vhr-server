@@ -1,0 +1,40 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sn.vhr.mapper.EmployeeMapper">
+
+    <resultMap id="BaseResultMap" type="com.sn.vhr.model.Employee">
+<!--            <result column="id" property="id" jdbcType="INTEGER" />-->
+<!--            <result column="name" property="name" jdbcType="VARCHAR" />-->
+<!--            <result column="gender" property="gender" jdbcType="CHAR" />-->
+<!--            <result column="birthday" property="birthday" jdbcType="DATE" />-->
+<!--            <result column="idCard" property="idcard" jdbcType="CHAR" />-->
+<!--            <result column="wedlock" property="wedlock" jdbcType="ENUM" />-->
+<!--            <result column="nationId" property="nationid" jdbcType="INTEGER" />-->
+<!--            <result column="nativePlace" property="nativeplace" jdbcType="VARCHAR" />-->
+<!--            <result column="politicId" property="politicid" jdbcType="INTEGER" />-->
+<!--            <result column="email" property="email" jdbcType="VARCHAR" />-->
+<!--            <result column="phone" property="phone" jdbcType="VARCHAR" />-->
+<!--            <result column="address" property="address" jdbcType="VARCHAR" />-->
+<!--            <result column="departmentId" property="departmentid" jdbcType="INTEGER" />-->
+<!--            <result column="jobLevelId" property="joblevelid" jdbcType="INTEGER" />-->
+<!--            <result column="posId" property="posid" jdbcType="INTEGER" />-->
+<!--            <result column="engageForm" property="engageform" jdbcType="VARCHAR" />-->
+<!--            <result column="tiptopDegree" property="tiptopdegree" jdbcType="ENUM" />-->
+<!--            <result column="specialty" property="specialty" jdbcType="VARCHAR" />-->
+<!--            <result column="school" property="school" jdbcType="VARCHAR" />-->
+<!--            <result column="beginDate" property="begindate" jdbcType="DATE" />-->
+<!--            <result column="workState" property="workstate" jdbcType="ENUM" />-->
+<!--            <result column="workID" property="workid" jdbcType="CHAR" />-->
+<!--            <result column="contractTerm" property="contractterm" jdbcType="DOUBLE" />-->
+<!--            <result column="conversionTime" property="conversiontime" jdbcType="DATE" />-->
+<!--            <result column="notWorkDate" property="notworkdate" jdbcType="DATE" />-->
+<!--            <result column="beginContract" property="begincontract" jdbcType="DATE" />-->
+<!--            <result column="endContract" property="endcontract" jdbcType="DATE" />-->
+<!--            <result column="workAge" property="workage" jdbcType="INTEGER" />-->
+    </resultMap>
+
+    <select id="getAllEmployees" resultMap="BaseResultMap">
+--         select * from employee;
+    </select>
+</mapper>

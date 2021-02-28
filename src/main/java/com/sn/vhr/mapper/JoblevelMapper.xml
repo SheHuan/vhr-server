@@ -1,0 +1,17 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.sn.vhr.mapper.JoblevelMapper">
+
+    <resultMap id="BaseResultMap" type="com.sn.vhr.model.Joblevel">
+<!--            <result column="id" property="id" jdbcType="INTEGER" />-->
+<!--            <result column="name" property="name" jdbcType="VARCHAR" />-->
+<!--            <result column="titleLevel" property="titlelevel" jdbcType="ENUM" />-->
+<!--            <result column="createDate" property="createdate" jdbcType="TIMESTAMP" />-->
+<!--            <result column="enabled" property="enabled" jdbcType="BIT" />-->
+    </resultMap>
+
+    <select id="getAllJoblevels" resultMap="BaseResultMap">
+--         select * from joblevel;
+    </select>
+</mapper>
