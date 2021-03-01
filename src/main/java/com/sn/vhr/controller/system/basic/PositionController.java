@@ -42,4 +42,18 @@ public class PositionController {
         }
         return RespBean.error("删除失败！");
     }
+
+    /**
+     * 批量删除
+     *
+     * @param ids
+     * @return
+     */
+    @DeleteMapping("/")
+    public RespBean deletePositions(Integer[] ids) {
+        if (positionService.deletePositions(ids) == ids.length) {
+            return RespBean.ok("删除功！");
+        }
+        return RespBean.error("删除失败！");
+    }
 }

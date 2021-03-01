@@ -37,4 +37,11 @@
     <delete id="deletePosition" parameterType="java.lang.Integer">
         delete from position where id = #{id}
     </delete>
+
+    <delete id="deletePositions">
+        delete from position where id in
+        <foreach collection="ids" item="id" separator="," open="(" close=")">
+            #{id}
+        </foreach>
+    </delete>
 </mapper>
