@@ -6,7 +6,7 @@
     <resultMap id="BaseResultMap" type="com.sn.vhr.model.Role">
             <result column="id" property="id" jdbcType="INTEGER" />
             <result column="name" property="name" jdbcType="VARCHAR" />
-            <result column="nameZh" property="namezh" jdbcType="VARCHAR" />
+            <result column="nameZh" property="nameZh" jdbcType="VARCHAR" />
     </resultMap>
 
     <select id="getAllRoles" resultMap="BaseResultMap">
