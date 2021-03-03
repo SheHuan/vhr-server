@@ -78,4 +78,9 @@
         where m3.enabled = 1
         order by m1.id,m2.id, m3.id;
     </select>
+
+    <select id="getMenuIdsByRoleId" resultType="java.lang.Integer">
+        select mid from menu_role where rid = #{roleId}
+    </select>
+
 </mapper>

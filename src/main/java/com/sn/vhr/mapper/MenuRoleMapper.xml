@@ -4,10 +4,19 @@
 <mapper namespace="com.sn.vhr.mapper.MenuRoleMapper">
 
     <resultMap id="BaseResultMap" type="com.sn.vhr.model.MenuRole">
-            <result column="id" property="id" jdbcType="INTEGER" />
-            <result column="mid" property="mid" jdbcType="INTEGER" />
-            <result column="rid" property="rid" jdbcType="INTEGER" />
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="mid" property="mid" jdbcType="INTEGER"/>
+        <result column="rid" property="rid" jdbcType="INTEGER"/>
     </resultMap>
+    <insert id="insertRecord">
+        insert into menu_role (mid, rid) values
+        <foreach collection="menuIds" separator="," item="menuId">
+            (#{menuId}, #{roleId})
+        </foreach>
+    </insert>
+    <delete id="deleteByRoleId">
+        delete from menu_role where rid = #{roleId}
+    </delete>
 
     <select id="getAllMenuRoles" resultMap="BaseResultMap">
         select * from menu_role;
