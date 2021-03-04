@@ -35,10 +35,18 @@ public class PermissController {
     }
 
     @PutMapping("/")
-    public RespBean updateMenuRole(Integer roleId, Integer[] menuIds){
-        if (menuService.updateMenuRole(roleId, menuIds)){
+    public RespBean updateMenuRole(Integer roleId, Integer[] menuIds) {
+        if (menuService.updateMenuRole(roleId, menuIds)) {
             return RespBean.ok("更新成功！");
         }
-        return RespBean.ok("更新失败！");
+        return RespBean.error("更新失败！");
+    }
+
+    @PostMapping("/role")
+    public RespBean addRole(@RequestBody Role role) {
+        if (roleService.addRole(role) == 1) {
+            return RespBean.ok("添加成功！");
+        }
+        return RespBean.error("添加失败！");
     }
 }

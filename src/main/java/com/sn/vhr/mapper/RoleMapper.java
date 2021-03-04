@@ -7,4 +7,6 @@ import java.util.List;
 @Mapper
 public interface RoleMapper{
     List<Role> getAllRoles();
+
+    Integer addRole(Role role);
 }

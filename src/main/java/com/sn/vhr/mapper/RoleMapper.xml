@@ -4,12 +4,16 @@
 <mapper namespace="com.sn.vhr.mapper.RoleMapper">
 
     <resultMap id="BaseResultMap" type="com.sn.vhr.model.Role">
-            <result column="id" property="id" jdbcType="INTEGER" />
-            <result column="name" property="name" jdbcType="VARCHAR" />
-            <result column="nameZh" property="nameZh" jdbcType="VARCHAR" />
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="nameZh" property="nameZh" jdbcType="VARCHAR"/>
     </resultMap>
 
     <select id="getAllRoles" resultMap="BaseResultMap">
         select * from role;
     </select>
+
+    <insert id="addRole" useGeneratedKeys="true" parameterType="com.sn.vhr.model.Role">
+        insert into role (name, nameZh) values (#{name}, #{nameZh})
+    </insert>
 </mapper>
