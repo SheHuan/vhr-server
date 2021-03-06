@@ -49,4 +49,12 @@ public class PermissController {
         }
         return RespBean.error("添加失败！");
     }
+
+    @DeleteMapping("/role/{roleId}")
+    public RespBean deleteRoleById(@PathVariable Integer roleId) {
+        if (roleService.deleteRoleById(roleId) == 1) {
+            return RespBean.ok("删除成功！");
+        }
+        return RespBean.error("删除失败！");
+    }
 }

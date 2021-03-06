@@ -16,4 +16,8 @@
     <insert id="addRole" useGeneratedKeys="true" parameterType="com.sn.vhr.model.Role">
         insert into role (name, nameZh) values (#{name}, #{nameZh})
     </insert>
+
+    <delete id="deleteRoleById">
+        delete from role where id = #{roleId}
+    </delete>
 </mapper>

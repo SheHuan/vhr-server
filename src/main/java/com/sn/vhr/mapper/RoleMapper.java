@@ -9,4 +9,6 @@ public interface RoleMapper{
     List<Role> getAllRoles();
 
     Integer addRole(Role role);
+
+    Integer deleteRoleById(Integer roleId);
 }

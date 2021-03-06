@@ -52,7 +52,7 @@ public class PositionController {
     @DeleteMapping("/")
     public RespBean deletePositions(Integer[] ids) {
         if (positionService.deletePositions(ids) == ids.length) {
-            return RespBean.ok("删除功！");
+            return RespBean.ok("删除成功！");
         }
         return RespBean.error("删除失败！");
     }
