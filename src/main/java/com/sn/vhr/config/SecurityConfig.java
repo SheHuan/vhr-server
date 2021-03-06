@@ -111,6 +111,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .exceptionHandling()
                 // 访问接口时，如果未登录则给出提示，而不是跳转到登录页面
                 .authenticationEntryPoint((httpServletRequest, httpServletResponse, e) -> {
+                    // session正常过期、后端重启，导致前端session不可用，设置http401，让前端处理
+                    httpServletResponse.setStatus(401);
                     RespBean respBean = RespBean.error("访问失败！");
                     if (e instanceof InsufficientAuthenticationException){
                         respBean.setMsg("尚未登录，请先登录！");

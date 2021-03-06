@@ -1,8 +1,8 @@
 package com.sn.vhr.config;
 
-import com.sn.vhr.mapper.MenuMapper;
 import com.sn.vhr.model.Menu;
 import com.sn.vhr.model.Role;
+import com.sn.vhr.service.MenuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.ConfigAttribute;
 import org.springframework.security.access.SecurityConfig;
@@ -20,7 +20,7 @@ import java.util.List;
 @Component
 public class MyFilterInvocationSecurityMetadataSource implements FilterInvocationSecurityMetadataSource {
     @Autowired
-    private MenuMapper menuMapper;
+    private MenuService menuService;
 
     // Ant风格的路径匹配
     private AntPathMatcher antPathMatcher = new AntPathMatcher();
@@ -33,7 +33,7 @@ public class MyFilterInvocationSecurityMetadataSource implements FilterInvocatio
             // 返回null表示当前请求不需要任何角色都能访问
             return null;
         }
-        List<Menu> menus = menuMapper.getAllMenuWithRole();
+        List<Menu> menus = menuService.getAllMenuWithRole();
         for (Menu menu : menus) {
             // 请求路径和menu中的路径匹配
             if (antPathMatcher.match(menu.getUrl(), requestUrl)) {
