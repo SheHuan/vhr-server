@@ -1,33 +1,22 @@
 package com.sn.vhr.model;
 
-import java.util.Date;
+import java.util.List;
 
 public class Department {
 
-    /**
-     *
-     */
     private Integer id;
-    /**
-     * 部门名称
-     */
+
     private String name;
-    /**
-     *
-     */
-    private Integer parentid;
-    /**
-     *
-     */
-    private String deppath;
-    /**
-     *
-     */
+
+    private Integer parentId;
+
+    private String depPath;
+
     private Boolean enabled;
-    /**
-     *
-     */
-    private Boolean isparent;
+
+    private Boolean isParent;
+
+    List<Department> children;
 
     public Integer getId() {
         return id;
@@ -45,20 +34,20 @@ public class Department {
         this.name = name;
     }
 
-    public Integer getParentid() {
-        return parentid;
+    public Integer getParentId() {
+        return parentId;
     }
 
-    public void setParentid(Integer parentid) {
-        this.parentid = parentid;
+    public void setParentId(Integer parentId) {
+        this.parentId = parentId;
     }
 
-    public String getDeppath() {
-        return deppath;
+    public String getDepPath() {
+        return depPath;
     }
 
-    public void setDeppath(String deppath) {
-        this.deppath = deppath;
+    public void setDepPath(String depPath) {
+        this.depPath = depPath;
     }
 
     public Boolean getEnabled() {
@@ -69,11 +58,19 @@ public class Department {
         this.enabled = enabled;
     }
 
-    public Boolean getIsparent() {
-        return isparent;
+    public Boolean getParent() {
+        return isParent;
     }
 
-    public void setIsparent(Boolean isparent) {
-        this.isparent = isparent;
+    public void setParent(Boolean parent) {
+        isParent = parent;
+    }
+
+    public List<Department> getChildren() {
+        return children;
+    }
+
+    public void setChildren(List<Department> children) {
+        this.children = children;
     }
 }

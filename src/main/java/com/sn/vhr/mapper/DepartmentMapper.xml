@@ -4,15 +4,23 @@
 <mapper namespace="com.sn.vhr.mapper.DepartmentMapper">
 
     <resultMap id="BaseResultMap" type="com.sn.vhr.model.Department">
-            <result column="id" property="id" jdbcType="INTEGER" />
-            <result column="name" property="name" jdbcType="VARCHAR" />
-            <result column="parentId" property="parentid" jdbcType="INTEGER" />
-            <result column="depPath" property="deppath" jdbcType="VARCHAR" />
-            <result column="enabled" property="enabled" jdbcType="BIT" />
-            <result column="isParent" property="isparent" jdbcType="BIT" />
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="parentId" property="parentId" jdbcType="INTEGER"/>
+        <result column="depPath" property="depPath" jdbcType="VARCHAR"/>
+        <result column="enabled" property="enabled" jdbcType="BIT"/>
+        <result column="isParent" property="isParent" jdbcType="BIT"/>
+    </resultMap>
+
+    <resultMap id="DepartmentWithChildren" type="com.sn.vhr.model.Department" extends="BaseResultMap">
+        <collection property="children" ofType="com.sn.vhr.model.Department"
+                    select="com.sn.vhr.mapper.DepartmentMapper.getAllDepartmentsByParentId" column="id"/>
     </resultMap>
 
     <select id="getAllDepartments" resultMap="BaseResultMap">
         select * from department;
+    </select>
+    <select id="getAllDepartmentsByParentId" resultMap="DepartmentWithChildren" parameterType="java.lang.Integer">
+        select * from department where parentId = #{parentId}
     </select>
 </mapper>

@@ -7,4 +7,6 @@ import java.util.List;
 @Mapper
 public interface DepartmentMapper{
     List<Department> getAllDepartments();
+
+    List<Department> getAllDepartmentsByParentId(Integer parentId);
 }
