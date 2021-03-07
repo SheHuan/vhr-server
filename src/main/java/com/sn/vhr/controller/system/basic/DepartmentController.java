@@ -1,11 +1,11 @@
 package com.sn.vhr.controller.system.basic;
 
 import com.sn.vhr.model.Department;
+import com.sn.vhr.model.RespBean;
 import com.sn.vhr.service.DepartmentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.method.P;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,5 +18,24 @@ public class DepartmentController {
     @GetMapping("/")
     public List<Department> getAllDepartments() {
         return departmentService.getAllDepartments();
+    }
+
+    @PostMapping("/")
+    public RespBean addDepartment(@RequestBody Department department) {
+        if (departmentService.addDepartment(department)) {
+            return RespBean.ok("添加成功！", department);
+        }
+        return RespBean.error("添加失败！");
+    }
+
+    @DeleteMapping("/{parentId}/{id}")
+    public RespBean deleteDepartment(@PathVariable Integer parentId, @PathVariable Integer id) {
+        Integer result = departmentService.deleteDepartment(id, parentId);
+        if (result == -1) {
+            return RespBean.error("该部门下有关联的员工，无法删除！");
+        } else if (result == -2) {
+            return RespBean.error("该部门下有关联的部门，无法删除！");
+        }
+        return RespBean.ok("删除成功！");
     }
 }

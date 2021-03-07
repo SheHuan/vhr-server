@@ -17,10 +17,46 @@
                     select="com.sn.vhr.mapper.DepartmentMapper.getAllDepartmentsByParentId" column="id"/>
     </resultMap>
 
+    <insert id="addDepartment" useGeneratedKeys="true" keyProperty="id" parameterType="com.sn.vhr.model.Department">
+        insert into department (name, parentId, enabled, isParent) values (#{name}, #{parentId}, #{enabled}, false)
+    </insert>
+
+    <update id="updateDepartmentById">
+        update department
+        <set>
+            <if test="name != null and name !=''">
+                name = #{name},
+            </if>
+            <if test="depPath != null and depPath !=''">
+                depPath = #{depPath},
+            </if>
+            <if test="enabled != null">
+                enabled = #{enabled},
+            </if>
+            <if test="isParent != null">
+                isParent = #{isParent},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteDepartmentById">
+        delete from department where id = #{id} and isParent = false
+    </delete>
+
     <select id="getAllDepartments" resultMap="BaseResultMap">
-        select * from department;
+        select * from department
     </select>
+
     <select id="getAllDepartmentsByParentId" resultMap="DepartmentWithChildren" parameterType="java.lang.Integer">
         select * from department where parentId = #{parentId}
+    </select>
+
+    <select id="getParentDepartment" resultType="com.sn.vhr.model.Department">
+        select * from department where id = #{id}
+    </select>
+
+    <select id="getChildrenDepartmentCount" resultType="java.lang.Integer">
+        select count(*) from department where parentId = #{parentId}
     </select>
 </mapper>

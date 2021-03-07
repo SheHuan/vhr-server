@@ -1,5 +1,6 @@
 package com.sn.vhr.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Department {
@@ -12,11 +13,11 @@ public class Department {
 
     private String depPath;
 
-    private Boolean enabled;
+    private Boolean enabled = true;
 
     private Boolean isParent;
 
-    List<Department> children;
+    List<Department> children = new ArrayList<>();
 
     public Integer getId() {
         return id;
@@ -58,11 +59,11 @@ public class Department {
         this.enabled = enabled;
     }
 
-    public Boolean getParent() {
+    public Boolean getIsParent() {
         return isParent;
     }
 
-    public void setParent(Boolean parent) {
+    public void setIsParent(Boolean parent) {
         isParent = parent;
     }
 

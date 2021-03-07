@@ -7,4 +7,6 @@ import java.util.List;
 @Mapper
 public interface EmployeeMapper{
     List<Employee> getAllEmployees();
+
+    Integer getEmployeeCountByDepartmentId(Integer departmentId);
 }
