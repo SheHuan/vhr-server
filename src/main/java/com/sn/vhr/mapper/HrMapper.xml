@@ -19,4 +19,9 @@
         from role
         where id in (select rid from hr_role where hrid = #{hrId})
     </select>
+    <select id="getAllHrs" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select *
+        from hr
+        where id != #{id}
+    </select>
 </mapper>
