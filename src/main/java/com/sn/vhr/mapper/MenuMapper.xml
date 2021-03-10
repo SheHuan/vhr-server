@@ -44,16 +44,7 @@
     </resultMap>
 
     <resultMap id="ALLMenuMap" type="com.sn.vhr.model.Menu" extends="BaseResultMap">
-        <id column="id1" property="id"/>
-        <result column="name1" property="name"/>
-        <collection property="children" ofType="com.sn.vhr.model.Menu">
-            <id column="id2" property="id"/>
-            <result column="name2" property="name"/>
-            <collection property="children" ofType="com.sn.vhr.model.Menu">
-                <id column="id3" property="id"/>
-                <result column="name3" property="name"/>
-            </collection>
-        </collection>
+        <collection property="children" ofType="com.sn.vhr.model.Menu" select="com.sn.vhr.mapper.MenuMapper.getMenusByParentId" column="id"/>
     </resultMap>
 
     <select id="getMenusByHrId" resultMap="MenuResultMap">
@@ -71,12 +62,11 @@
     </select>
 
     <select id="getAllMenus" resultMap="ALLMenuMap">
-        select m1.id as id1, m1.name as name1, m2.id as id2, m2.name as name2, m3.id as id3, m3.name as name3
-        from menu m1
-        left join menu m2 on m1.id = m2.parentId
-        left join menu m3 on m2.id = m3.parentId
-        where m3.enabled = 1
-        order by m1.id,m2.id, m3.id;
+        select id, name from menu where parentId is null or parentId = ''
+    </select>
+
+    <select id="getMenusByParentId" resultMap="ALLMenuMap">
+        select id, name from menu where parentId = #{parentId}
     </select>
 
     <select id="getMenuIdsByRoleId" resultType="java.lang.Integer">
