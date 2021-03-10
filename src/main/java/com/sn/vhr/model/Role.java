@@ -1,16 +1,11 @@
 package com.sn.vhr.model;
 
-import java.util.Date;
 
-public class Role {
+import java.io.Serializable;
 
-    /**
-     *
-     */
+public class Role implements Serializable {
     private Integer id;
-    /**
-     *
-     */
+
     private String name;
     /**
      * 角色名称

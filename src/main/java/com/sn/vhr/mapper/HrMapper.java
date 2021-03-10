@@ -13,4 +13,6 @@ public interface HrMapper {
     List<Role> findRolesByUserId(Integer hrId);
 
     List<Hr> getAllHrs(Integer id);
+
+    Integer updateHr(Hr hr);
 }

@@ -12,4 +12,14 @@
     <select id="getAllHrRoles" resultMap="BaseResultMap">
         select * from hr_role;
     </select>
+
+    <insert id="insertRecord">
+        insert into hr_role (hrid, rid) values
+        <foreach collection="roleIds" separator="," item="roleId">
+            (#{hrid}, #{roleId})
+        </foreach>
+    </insert>
+    <delete id="deleteRoleByHrId">
+        delete from hr_role where hrid = #{hrid}
+    </delete>
 </mapper>

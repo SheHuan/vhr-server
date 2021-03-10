@@ -7,6 +7,39 @@
         <id property="id" column="id"/>
         <collection property="roles" column="id" select="findRolesByUserId"/>
     </resultMap>
+    <update id="updateHr" parameterType="com.sn.vhr.model.Hr">
+        update hr
+        <set>
+            <if test="name != null">
+                name = #{name},
+            </if>
+            <if test="phone != null">
+                phone = #{phone},
+            </if>
+            <if test="telephone != null">
+                telephone = #{telephone},
+            </if>
+            <if test="address != null">
+                address = #{address},
+            </if>
+            <if test="enabled != null">
+                enabled = #{enabled},
+            </if>
+            <if test="username != null">
+                username = #{username},
+            </if>
+            <if test="password != null">
+                password = #{password},
+            </if>
+            <if test="userface != null">
+                userface = #{userface},
+            </if>
+            <if test="remark != null">
+                remark = #{remark}
+            </if>
+        </set>
+        where id = #{id}
+    </update>
 
     <select id="findUserByUsername" resultMap="BaseResultMap">
         select *

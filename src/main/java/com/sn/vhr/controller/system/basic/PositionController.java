@@ -38,7 +38,7 @@ public class PositionController {
     @DeleteMapping("/{id}")
     public RespBean deletePosition(@PathVariable Integer id) {
         if (positionService.deletePosition(id) == 1) {
-            return RespBean.ok("删除功！");
+            return RespBean.ok("删除成功！");
         }
         return RespBean.error("删除失败！");
     }
