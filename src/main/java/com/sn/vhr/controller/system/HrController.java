@@ -20,8 +20,8 @@ public class HrController {
     RoleService roleService;
 
     @GetMapping("/")
-    public List<Hr> getAllHrs() {
-        return hrService.getAllHrs();
+    public List<Hr> getAllHrs(String keyword) {
+        return hrService.getAllHrs(keyword);
     }
 
     @PutMapping("/")
@@ -43,5 +43,13 @@ public class HrController {
             return RespBean.ok("更新成功！");
         }
         return RespBean.error("更新失败！");
+    }
+
+    @DeleteMapping("/{hrid}")
+    public RespBean deleteHrById(@PathVariable Integer hrid) {
+        if (hrService.deleteHrById(hrid) == 1) {
+            return RespBean.ok("删除成功！");
+        }
+        return RespBean.error("删除失败！");
     }
 }

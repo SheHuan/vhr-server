@@ -34,8 +34,8 @@ public class HrService implements UserDetailsService {
         return hr;
     }
 
-    public List<Hr> getAllHrs() {
-        List<Hr> allHrs = hrMapper.getAllHrs(HrUtils.getCurrentHr().getId());
+    public List<Hr> getAllHrs(String keyword) {
+        List<Hr> allHrs = hrMapper.getAllHrs(HrUtils.getCurrentHr().getId(), keyword);
         allHrs.forEach(hr -> {
             hr.setPassword(null);
         });
@@ -54,5 +54,11 @@ public class HrService implements UserDetailsService {
         }
         Integer result = hrRoleMapper.insertRecord(hrid, rids);
         return result == rids.length;
+    }
+
+    @Transactional
+    public Integer deleteHrById(Integer hrid) {
+        hrRoleMapper.deleteRoleByHrId(hrid);
+        return hrMapper.deleteHrById(hrid);
     }
 }
