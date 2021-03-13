@@ -1,107 +1,148 @@
 package com.sn.vhr.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.util.Date;
 
-public class Salary{
+public class Salary {
+    private Integer id;
 
-                /**
-                * 
-                */
-                private Integer id;
-                /**
-                * 基本工资
-                */
-                private Integer basicsalary;
-                /**
-                * 奖金
-                */
-                private Integer bonus;
-                /**
-                * 午餐补助
-                */
-                private Integer lunchsalary;
-                /**
-                * 交通补助
-                */
-                private Integer trafficsalary;
-                /**
-                * 应发工资
-                */
-                private Integer allsalary;
-                /**
-                * 养老金基数
-                */
-                private Integer pensionbase;
-                /**
-                * 医疗基数
-                */
-                private Integer medicalbase;
-                /**
-                * 公积金基数
-                */
-                private Integer accumulationfundbase;
-                /**
-                * 
-                */
-                private String name;
-                public Integer getId(){
-                return id;
-                }
-                public void setId(Integer id){
-                this.id=id;
-                }
-                public Integer getBasicsalary(){
-                return basicsalary;
-                }
-                public void setBasicsalary(Integer basicsalary){
-                this.basicsalary=basicsalary;
-                }
-                public Integer getBonus(){
-                return bonus;
-                }
-                public void setBonus(Integer bonus){
-                this.bonus=bonus;
-                }
-                public Integer getLunchsalary(){
-                return lunchsalary;
-                }
-                public void setLunchsalary(Integer lunchsalary){
-                this.lunchsalary=lunchsalary;
-                }
-                public Integer getTrafficsalary(){
-                return trafficsalary;
-                }
-                public void setTrafficsalary(Integer trafficsalary){
-                this.trafficsalary=trafficsalary;
-                }
-                public Integer getAllsalary(){
-                return allsalary;
-                }
-                public void setAllsalary(Integer allsalary){
-                this.allsalary=allsalary;
-                }
-                public Integer getPensionbase(){
-                return pensionbase;
-                }
-                public void setPensionbase(Integer pensionbase){
-                this.pensionbase=pensionbase;
-                }
-                public Integer getMedicalbase(){
-                return medicalbase;
-                }
-                public void setMedicalbase(Integer medicalbase){
-                this.medicalbase=medicalbase;
-                }
-                public Integer getAccumulationfundbase(){
-                return accumulationfundbase;
-                }
-                public void setAccumulationfundbase(Integer accumulationfundbase){
-                this.accumulationfundbase=accumulationfundbase;
-                }
-                public String getName(){
-                    return name;
-                }
-                public void setName(String name){
-                    this.name=name;
-                }
+    private Integer basicSalary;
+
+    private Integer bonus;
+
+    private Integer lunchSalary;
+
+    private Integer trafficSalary;
+
+    private Integer allSalary;
+
+    private Integer pensionBase;
+
+    private Float pensionPer;
+
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date createDate;
+
+    private Integer medicalBase;
+
+    private Float medicalPer;
+
+    private Integer accumulationFundBase;
+
+    private Float accumulationFundPer;
+
+    private String name;
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Integer getBasicSalary() {
+        return basicSalary;
+    }
+
+    public void setBasicSalary(Integer basicSalary) {
+        this.basicSalary = basicSalary;
+    }
+
+    public Integer getBonus() {
+        return bonus;
+    }
+
+    public void setBonus(Integer bonus) {
+        this.bonus = bonus;
+    }
+
+    public Integer getLunchSalary() {
+        return lunchSalary;
+    }
+
+    public void setLunchSalary(Integer lunchSalary) {
+        this.lunchSalary = lunchSalary;
+    }
+
+    public Integer getTrafficSalary() {
+        return trafficSalary;
+    }
+
+    public void setTrafficSalary(Integer trafficSalary) {
+        this.trafficSalary = trafficSalary;
+    }
+
+    public Integer getAllSalary() {
+        return allSalary;
+    }
+
+    public void setAllSalary(Integer allSalary) {
+        this.allSalary = allSalary;
+    }
+
+    public Integer getPensionBase() {
+        return pensionBase;
+    }
+
+    public void setPensionBase(Integer pensionBase) {
+        this.pensionBase = pensionBase;
+    }
+
+    public Float getPensionPer() {
+        return pensionPer;
+    }
+
+    public void setPensionPer(Float pensionPer) {
+        this.pensionPer = pensionPer;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Integer getMedicalBase() {
+        return medicalBase;
+    }
+
+    public void setMedicalBase(Integer medicalBase) {
+        this.medicalBase = medicalBase;
+    }
+
+    public Float getMedicalPer() {
+        return medicalPer;
+    }
+
+    public void setMedicalPer(Float medicalPer) {
+        this.medicalPer = medicalPer;
+    }
+
+    public Integer getAccumulationFundBase() {
+        return accumulationFundBase;
+    }
+
+    public void setAccumulationFundBase(Integer accumulationFundBase) {
+        this.accumulationFundBase = accumulationFundBase;
+    }
+
+    public Float getAccumulationFundPer() {
+        return accumulationFundPer;
+    }
+
+    public void setAccumulationFundPer(Float accumulationFundPer) {
+        this.accumulationFundPer = accumulationFundPer;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

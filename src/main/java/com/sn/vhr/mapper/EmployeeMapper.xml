@@ -4,40 +4,64 @@
 <mapper namespace="com.sn.vhr.mapper.EmployeeMapper">
 
     <resultMap id="BaseResultMap" type="com.sn.vhr.model.Employee">
-        <!--            <result column="id" property="id" jdbcType="INTEGER" />-->
-        <!--            <result column="name" property="name" jdbcType="VARCHAR" />-->
-        <!--            <result column="gender" property="gender" jdbcType="CHAR" />-->
-        <!--            <result column="birthday" property="birthday" jdbcType="DATE" />-->
-        <!--            <result column="idCard" property="idcard" jdbcType="CHAR" />-->
-        <!--            <result column="wedlock" property="wedlock" jdbcType="ENUM" />-->
-        <!--            <result column="nationId" property="nationid" jdbcType="INTEGER" />-->
-        <!--            <result column="nativePlace" property="nativeplace" jdbcType="VARCHAR" />-->
-        <!--            <result column="politicId" property="politicid" jdbcType="INTEGER" />-->
-        <!--            <result column="email" property="email" jdbcType="VARCHAR" />-->
-        <!--            <result column="phone" property="phone" jdbcType="VARCHAR" />-->
-        <!--            <result column="address" property="address" jdbcType="VARCHAR" />-->
-        <!--            <result column="departmentId" property="departmentid" jdbcType="INTEGER" />-->
-        <!--            <result column="jobLevelId" property="joblevelid" jdbcType="INTEGER" />-->
-        <!--            <result column="posId" property="posid" jdbcType="INTEGER" />-->
-        <!--            <result column="engageForm" property="engageform" jdbcType="VARCHAR" />-->
-        <!--            <result column="tiptopDegree" property="tiptopdegree" jdbcType="ENUM" />-->
-        <!--            <result column="specialty" property="specialty" jdbcType="VARCHAR" />-->
-        <!--            <result column="school" property="school" jdbcType="VARCHAR" />-->
-        <!--            <result column="beginDate" property="begindate" jdbcType="DATE" />-->
-        <!--            <result column="workState" property="workstate" jdbcType="ENUM" />-->
-        <!--            <result column="workID" property="workid" jdbcType="CHAR" />-->
-        <!--            <result column="contractTerm" property="contractterm" jdbcType="DOUBLE" />-->
-        <!--            <result column="conversionTime" property="conversiontime" jdbcType="DATE" />-->
-        <!--            <result column="notWorkDate" property="notworkdate" jdbcType="DATE" />-->
-        <!--            <result column="beginContract" property="begincontract" jdbcType="DATE" />-->
-        <!--            <result column="endContract" property="endcontract" jdbcType="DATE" />-->
-        <!--            <result column="workAge" property="workage" jdbcType="INTEGER" />-->
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="gender" property="gender" jdbcType="CHAR"/>
+        <result column="birthday" property="birthday" jdbcType="DATE"/>
+        <result column="idCard" property="idCard" jdbcType="CHAR"/>
+        <result column="wedlock" property="wedlock" jdbcType="CHAR"/>
+        <result column="nationId" property="nationId" jdbcType="INTEGER"/>
+        <result column="nativePlace" property="nativePlace" jdbcType="VARCHAR"/>
+        <result column="politicId" property="politicId" jdbcType="INTEGER"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="address" property="address" jdbcType="VARCHAR"/>
+        <result column="departmentId" property="departmentId" jdbcType="INTEGER"/>
+        <result column="jobLevelId" property="jobLevelId" jdbcType="INTEGER"/>
+        <result column="posId" property="posId" jdbcType="INTEGER"/>
+        <result column="engageForm" property="engageForm" jdbcType="VARCHAR"/>
+        <result column="tiptopDegree" property="tiptopDegree" jdbcType="CHAR"/>
+        <result column="specialty" property="specialty" jdbcType="VARCHAR"/>
+        <result column="school" property="school" jdbcType="VARCHAR"/>
+        <result column="beginDate" property="beginDate" jdbcType="DATE"/>
+        <result column="workState" property="workState" jdbcType="CHAR"/>
+        <result column="workID" property="workID" jdbcType="CHAR"/>
+        <result column="contractTerm" property="contractTerm" jdbcType="DOUBLE"/>
+        <result column="conversionTime" property="conversionTime" jdbcType="DATE"/>
+        <result column="notWorkDate" property="notWorkDate" jdbcType="DATE"/>
+        <result column="beginContract" property="beginContract" jdbcType="DATE"/>
+        <result column="endContract" property="endContract" jdbcType="DATE"/>
+        <result column="workAge" property="workAge" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <resultMap id="EmployeeInfo" type="com.sn.vhr.model.Employee" extends="BaseResultMap">
+        <association property="nation" column="nationId" select="com.sn.vhr.mapper.NationMapper.getNationById"/>
+        <association property="politicsstatus" column="politicId"
+                     select="com.sn.vhr.mapper.PoliticsstatusMapper.getPoliticsstatusById"/>
+        <association property="department" column="departmentId"
+                     select="com.sn.vhr.mapper.DepartmentMapper.getParentDepartment"/>
+        <association property="jobLevel" column="jobLevelId" select="com.sn.vhr.mapper.JobLevelMapper.getJobLevelById"/>
+        <association property="position" column="posId" select="com.sn.vhr.mapper.PositionMapper.getPositionById"/>
     </resultMap>
 
     <select id="getAllEmployees" resultMap="BaseResultMap">
---         select * from employee;
+        select * from employee;
     </select>
     <select id="getEmployeeCountByDepartmentId" resultType="java.lang.Integer">
         select count(*) from employee where departmentId = #{departmentId};
+    </select>
+    <select id="getEmployeeByPage" resultMap="EmployeeInfo">
+        select * from employee
+        <if test="keyword != null and keyword != ''">
+            where name like concat('%', #{keyword}, '%')
+        </if>
+        order by id
+        limit #{offset}, #{pageSize}
+    </select>
+    <select id="getTotal" resultType="java.lang.Long">
+        select count(*) from employee
+        <if test="keyword != null and keyword != ''">
+            where name like concat('%', #{keyword}, '%')
+        </if>
     </select>
 </mapper>

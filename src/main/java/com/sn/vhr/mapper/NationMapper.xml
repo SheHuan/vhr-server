@@ -11,4 +11,7 @@
     <select id="getAllNations" resultMap="BaseResultMap">
         select * from nation;
     </select>
+    <select id="getNationById" resultMap="BaseResultMap">
+        select * from nation where id = #{id}
+    </select>
 </mapper>

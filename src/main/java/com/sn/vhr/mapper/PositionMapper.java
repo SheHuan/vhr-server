@@ -16,4 +16,6 @@ public interface PositionMapper {
     Integer deletePosition(Integer id);
 
     Integer deletePositions(Integer[] ids);
+
+    Position getPositionById(Integer id);
 }

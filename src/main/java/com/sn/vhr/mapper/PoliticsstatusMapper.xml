@@ -4,11 +4,14 @@
 <mapper namespace="com.sn.vhr.mapper.PoliticsstatusMapper">
 
     <resultMap id="BaseResultMap" type="com.sn.vhr.model.Politicsstatus">
-            <result column="id" property="id" jdbcType="INTEGER" />
-            <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
     </resultMap>
 
     <select id="getAllPoliticsstatuss" resultMap="BaseResultMap">
         select * from politicsstatus;
+    </select>
+    <select id="getPoliticsstatusById" resultMap="BaseResultMap">
+        select * from politicsstatus where id = #{id}
     </select>
 </mapper>

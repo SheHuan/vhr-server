@@ -13,6 +13,9 @@
     <select id="getAllPositions" resultMap="BaseResultMap">
         select * from position;
     </select>
+    <select id="getPositionById" resultMap="BaseResultMap">
+        select * from position where id = #{id}
+    </select>
 
     <insert id="addPosition" useGeneratedKeys="true" parameterType="com.sn.vhr.model.Position">
         insert into position (name, createDate, enabled) values (#{name}, #{createDate}, #{enabled})

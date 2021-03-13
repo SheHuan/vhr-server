@@ -7,4 +7,6 @@ import java.util.List;
 @Mapper
 public interface PoliticsstatusMapper{
     List<Politicsstatus> getAllPoliticsstatuss();
+
+    Politicsstatus getPoliticsstatusById(Integer id);
 }

@@ -7,4 +7,6 @@ import java.util.List;
 @Mapper
 public interface NationMapper{
     List<Nation> getAllNations();
+
+    Nation getNationById(Integer id);
 }
