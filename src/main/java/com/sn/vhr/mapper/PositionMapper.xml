@@ -11,7 +11,7 @@
     </resultMap>
 
     <select id="getAllPositions" resultMap="BaseResultMap">
-        select * from position;
+        select * from position where enabled = 1;
     </select>
     <select id="getPositionById" resultMap="BaseResultMap">
         select * from position where id = #{id}
