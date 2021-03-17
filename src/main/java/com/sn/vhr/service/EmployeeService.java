@@ -35,7 +35,10 @@ public class EmployeeService {
     }
 
     public RespPageBean getEmployeeByPage(Integer pageNum, Integer pageSize, String keyword) {
-        Integer offset = (pageNum - 1) * pageSize;
+        Integer offset = null;
+        if (pageNum != null && pageSize != null) {
+            offset = (pageNum - 1) * pageSize;
+        }
         List<Employee> data = employeeMapper.getEmployeeByPage(offset, pageSize, keyword);
         Long total = employeeMapper.getTotal(keyword);
         RespPageBean respPageBean = new RespPageBean();
@@ -60,5 +63,9 @@ public class EmployeeService {
     public Integer updateEmployee(Employee employee) {
         calculateContractTerm(employee);
         return employeeMapper.updateEmployee(employee);
+    }
+
+    public int addEmployees(List<Employee> employeeList) {
+        return employeeMapper.addEmployees(employeeList);
     }
 }

@@ -24,4 +24,6 @@ public interface EmployeeMapper {
     Integer deleteEmployee(Integer id);
 
     Integer updateEmployee(Employee employee);
+
+    int addEmployees(@Param("employeeList") List<Employee> employeeList);
 }

@@ -22,6 +22,10 @@ public class DepartmentService {
         return departmentMapper.getAllDepartmentsByParentId(-1);
     }
 
+    public List<Department> getAllDepartments2() {
+        return departmentMapper.getAllDepartments();
+    }
+
     @Transactional
     public Boolean addDepartment(Department department) {
         // 添加部门

@@ -2,9 +2,13 @@ package com.sn.vhr.controller.system.emp;
 
 import com.sn.vhr.model.*;
 import com.sn.vhr.service.*;
+import com.sn.vhr.utils.POIUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 @RestController
@@ -93,5 +97,23 @@ public class EmpBasicController {
             return RespBean.ok("更新成功！");
         }
         return RespBean.ok("更新失败！");
+    }
+
+    @GetMapping("/export")
+    public ResponseEntity<byte[]> exportData() {
+        List<Employee> employeeList = (List<Employee>) employeeService.getEmployeeByPage(null, null, null).getData();
+        return POIUtils.employee2Excel(employeeList);
+    }
+
+    @PostMapping("/import")
+    public RespBean importData(MultipartFile file) throws IOException {
+        List<Employee> employeeList = POIUtils.excel2Employee(file, nationService.getAllNations(),
+                departmentService.getAllDepartments2(), politicsstatusService.getAllPoliticsstatus(),
+                positionService.getAllPositions(), jobLevelService.getAllJobLevels());
+
+        if (employeeService.addEmployees(employeeList) == employeeList.size()) {
+            return RespBean.ok("上传成功！");
+        }
+        return RespBean.ok("上传失败！");
     }
 }
