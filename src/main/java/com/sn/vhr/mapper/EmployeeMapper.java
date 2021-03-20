@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.security.core.parameters.P;
 
+import java.util.Date;
 import java.util.List;
 
 @Mapper
@@ -26,4 +27,11 @@ public interface EmployeeMapper {
     Integer updateEmployee(Employee employee);
 
     int addEmployees(@Param("employeeList") List<Employee> employeeList);
+
+    List<Employee> getEmployeeByPageSuper(@Param("offset") Integer offset,
+                                          @Param("pageSize") Integer pageSize,
+                                          @Param("emp") Employee employee,
+                                          @Param("beginDateScope") Date[] beginDateScope);
+
+    Long getTotalSuper(@Param("emp") Employee employee, @Param("beginDateScope") Date[] beginDateScope);
 }

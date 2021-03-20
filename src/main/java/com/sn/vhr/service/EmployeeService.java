@@ -68,4 +68,17 @@ public class EmployeeService {
     public int addEmployees(List<Employee> employeeList) {
         return employeeMapper.addEmployees(employeeList);
     }
+
+    public RespPageBean getEmployeeByPageSuper(Integer pageNum, Integer pageSize, Employee employee, Date[] beginDateScope) {
+        Integer offset = null;
+        if (pageNum != null && pageSize != null) {
+            offset = (pageNum - 1) * pageSize;
+        }
+        List<Employee> data = employeeMapper.getEmployeeByPageSuper(offset, pageSize, employee, beginDateScope);
+        Long total = employeeMapper.getTotalSuper(employee, beginDateScope);
+        RespPageBean respPageBean = new RespPageBean();
+        respPageBean.setData(data);
+        respPageBean.setTotal(total);
+        return respPageBean;
+    }
 }

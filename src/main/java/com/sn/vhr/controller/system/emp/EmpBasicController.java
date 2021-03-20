@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -42,6 +43,13 @@ public class EmpBasicController {
                                           @RequestParam(defaultValue = "10") Integer pageSize,
                                           String keyword) {
         return employeeService.getEmployeeByPage(pageNum, pageSize, keyword);
+    }
+
+    @GetMapping("/superSearch")
+    public RespPageBean getEmployeeByPageSuper(@RequestParam(defaultValue = "1") Integer pageNum,
+                                          @RequestParam(defaultValue = "10") Integer pageSize,
+                                          Employee employee, Date[] beginDateScope) {
+        return employeeService.getEmployeeByPageSuper(pageNum, pageSize, employee, beginDateScope);
     }
 
     @PostMapping("/")

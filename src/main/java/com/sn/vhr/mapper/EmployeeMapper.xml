@@ -398,4 +398,60 @@
     <select id="getMaxWorkID" resultType="java.lang.Integer">
         select max(workID) from employee;
     </select>
+    <select id="getEmployeeByPageSuper" resultMap="EmployeeInfo">
+        select * from employee
+        <where>
+            <if test="emp.politicId != null">
+                and politicId = #{emp.politicId}
+            </if>
+            <if test="emp.nationId != null">
+                and nationId = #{emp.nationId}
+            </if>
+            <if test="emp.posId != null">
+                and posId = #{emp.posId}
+            </if>
+            <if test="emp.jobLevelId != null">
+                and jobLevelId = #{emp.jobLevelId}
+            </if>
+            <if test="emp.departmentId != null">
+                and departmentId = #{emp.departmentId}
+            </if>
+            <if test="emp.engageForm != null and emp.engageForm != ''">
+                and engageForm = #{emp.engageForm}
+            </if>
+            <if test="beginDateScope != null and beginDateScope.length==2">
+                and beginDate between #{beginDateScope[0]} and #{beginDateScope[1]}
+            </if>
+        </where>
+
+        <if test="offset != null and pageSize != null">
+            limit #{offset}, #{pageSize}
+        </if>
+    </select>
+    <select id="getTotalSuper" resultType="java.lang.Long">
+        select count(*) from employee
+        <where>
+            <if test="emp.politicId != null">
+                and politicId = #{emp.politicId}
+            </if>
+            <if test="emp.nationId != null">
+                and nationId = #{emp.nationId}
+            </if>
+            <if test="emp.posId != null">
+                and posId = #{emp.posId}
+            </if>
+            <if test="emp.jobLevelId != null">
+                and jobLevelId = #{emp.jobLevelId}
+            </if>
+            <if test="emp.departmentId != null">
+                and departmentId = #{emp.departmentId}
+            </if>
+            <if test="emp.engageForm != null and emp.engageForm != ''">
+                and engageForm = #{emp.engageForm}
+            </if>
+            <if test="beginDateScope != null and beginDateScope.length==2">
+                and beginDate between #{beginDateScope[0]} and #{beginDateScope[1]}
+            </if>
+        </where>
+    </select>
 </mapper>
